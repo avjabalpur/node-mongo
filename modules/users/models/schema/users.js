@@ -6,7 +6,7 @@ var mongoose = require('mongoose'),
 /**
  * BOM Schema
  */
-var usersSchema = new Schema({
+var userSchema = new Schema({
   id: { type: String },
   name: {
     type: String,
@@ -21,4 +21,4 @@ var usersSchema = new Schema({
   }
 }, { strict: false });
 
-module.exports = usersSchema;
+module.exports = userSchema;
