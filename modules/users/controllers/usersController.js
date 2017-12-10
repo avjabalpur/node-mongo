@@ -5,7 +5,7 @@
  */
 var path = require('path'),
   async = require('async'),
-  users = require('./sources/users'),
+  users = require('./sources/usersSource'),
   errorHandler = require(path.resolve('./modules/core/controllers/error-controller'));
 
 /**

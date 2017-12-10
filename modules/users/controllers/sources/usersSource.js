@@ -4,7 +4,7 @@
  * Module dependencies.
  */
 
-require('../../models/users');
+require('../../models/usersModel');
 
 var _ = require('lodash'),
   Promise = require('bluebird'),
@@ -25,7 +25,6 @@ exports.getUsers = function (req) {
   if (_.get(req, 'params.id')) {
     query = { id: req.params.id };
   }
-console.log(req.params.id)
   return new Promise(function (resolve, reject) {
     if (req.params.id) {
       userModel.find(query).exec()
@@ -60,18 +59,14 @@ exports.saveUsers = function (req, res) {
   return new Promise(function(resolve, reject) {
 
     if (_.get(req, 'params.id')) {
-      userModel.find({id : req.params.id}).exec()
+      userModel.update({id : req.params.id}, _.get(req, 'body')).exec()
         .then(function(user) {
-          user = _.merge(user, req.body);
-          user.save()
-          .then(function(user) { 
-            logInConsole('User has updated successfully', 'success');
-            resolve(user); 
-          }, function(err) { 
-            logInConsole('User has not updated successfully because of : '+ err, 'fail');
+          logInConsole('User has updated successfully', 'success');
+          resolve(user); 
+        }, function(err) { 
+          logInConsole('User has not updated successfully because of : '+ err, 'fail');
             reject(err); 
-          });
-        }, function(err) { reject(err); });
+        });
     } else {
       var userObj = new userModel(req.body);
       userObj.save()

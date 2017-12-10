@@ -8,7 +8,7 @@ var mongoose = require('mongoose');
 /**
  * Load instanciated BOMSchema
  */
-var userSchema = require('./schema/users');
+var userSchema = require('./schema/usersSchema');
 
 /**
  * Hook a pre save method to add date
