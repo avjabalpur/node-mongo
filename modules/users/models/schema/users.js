@@ -4,7 +4,7 @@ var mongoose = require('mongoose'),
   Schema = mongoose.Schema;
 
 /**
- * BOM Schema
+ * Users Schema
  */
 var userSchema = new Schema({
   id: { type: String },
