@@ -5,8 +5,6 @@
  */
 var mongoose = require('mongoose');
 
-console.log('$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$inside model');
-
 /**
  * Load instanciated BOMSchema
  */

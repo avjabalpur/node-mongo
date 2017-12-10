@@ -12,7 +12,6 @@ var path = require('path'),
  * Get users Data
  */
 module.exports.getUsers = function (req, res, done) {
-  console.log('____________________+++++++++++++++++++=');
   async.waterfall([
     function (next) {
       // user - project (one to one)
@@ -35,7 +34,7 @@ module.exports.getUsers = function (req, res, done) {
 module.exports.saveUsers = function (req, res, done) {
   async.waterfall([
     function (next) {
-      users.save(req, res)
+      users.saveUsers(req, res)
         .then(function(user) { next(null, user); }, function(err) { done(null, err); });
     },
     function (user, next) {

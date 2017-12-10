@@ -8,6 +8,7 @@ module.exports = function (app, router) {
   var users = require('../controllers/users');
 
   router.get('/users', users.getUsers);
+   router.get('/users/:id', users.getUsers);
   router.post('/users', users.saveUsers);
   router.put('/users/:id', users.saveUsers);
   // load the BOM router in the app
