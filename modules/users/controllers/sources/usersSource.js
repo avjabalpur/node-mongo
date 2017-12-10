@@ -81,6 +81,26 @@ exports.saveUsers = function (req, res) {
   });
 };
 
+exports.deleteUsers = function (req, res) {
+
+  logInConsole('Calling for deleting users');
+  
+  return new Promise(function(resolve, reject) {
+
+    if (_.get(req, 'params.id')) {
+      userModel.remove({id : req.params.id}).exec()
+        .then(function(user) {
+          logInConsole('User has deleted successfully', 'success');
+          resolve(user); 
+        }, function(err) { 
+          logInConsole('User has not deleted successfully because of : '+ err, 'fail');
+            reject(err); 
+        });
+    }
+  });
+};
+
+
 function logInConsole(msg, type) {
   switch(type){
     case 'success':

@@ -49,5 +49,26 @@ module.exports.saveUsers = function (req, res, done) {
   });
 };
 
+/**
+ * Save users
+ */
+module.exports.deleteUsers = function (req, res, done) {
+  async.waterfall([
+    function (next) {
+      users.deleteUsers(req, res)
+        .then(function(user) { next(null, user); }, function(err) { done(null, err); });
+    },
+    function (user, next) {
+      res.send({ status: 'success', msg: 'users deleted successfully', data: user });
+    }
+  ], function (err) {
+    if (err) {
+      console.log(err);
+      return res.status(400).send(errorHandler.getErrorResponse(err));
+      // return done(err);
+    }
+  });
+};
+
 
 
