@@ -22,7 +22,7 @@ var _ = require('lodash'),
 exports.getUsers = function (req) {
   logInConsole('Calling for getting users');
   var query = {};
-  if (req.params.id) {
+  if (_.get(req, 'params.id')) {
     query = { id: req.params.id };
   }
 console.log(req.params.id)
@@ -55,12 +55,12 @@ console.log(req.params.id)
  */
 exports.saveUsers = function (req, res) {
 
-  logInConsole('Calling for saving users');
+  logInConsole('Calling for updating users');
   
   return new Promise(function(resolve, reject) {
 
-    if (! _.isUndefined(req.params.id) && req.params.id !== '') {
-      userModel.findById(req.params.id).exec()
+    if (_.get(req, 'params.id')) {
+      userModel.find({id : req.params.id}).exec()
         .then(function(user) {
           user = _.merge(user, req.body);
           user.save()
